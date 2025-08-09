@@ -1,0 +1,27 @@
+[project]
+name = "rm_agent_helper"
+version = "0.1.0"
+description = "rm_agent_helper using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.121.1,<1.0.0",
+    "onnxruntime-silicon==1.16.3"
+]
+
+[project.scripts]
+rm_agent_helper = "rm_agent_helper.main:run"
+run_crew = "rm_agent_helper.main:run"
+train = "rm_agent_helper.main:train"
+replay = "rm_agent_helper.main:replay"
+test = "rm_agent_helper.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
+
+[tool.uv.required-environments]
+"macosx_13_0_universal2" = true
