@@ -5,9 +5,8 @@ description = "rm_agent_helper using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.13"
 dependencies = [
-    "crewai[tools]>=0.121.1,<1.0.0",
-    "onnxruntime-silicon==1.16.3"
-]
+    "crewai[tools]>=0.121.1,<1.0.0"
+    ]
 
 [project.scripts]
 rm_agent_helper = "rm_agent_helper.main:run"
@@ -22,6 +21,3 @@ build-backend = "hatchling.build"
 
 [tool.crewai]
 type = "crew"
-
-[tool.uv.required-environments]
-"macosx_13_0_universal2" = true
