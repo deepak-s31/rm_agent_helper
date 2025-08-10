@@ -1,0 +1,54 @@
+[
+  {
+    "job-file": "job1.txt",
+    "job-title": "Analyst/Consultant/Senior Consultant in T&T Team",
+    "matches": [
+      {
+        "resource-file": "Deepak Shanmugasundaram-Resume.pdf",
+        "resource-name": "Deepak Shanmugasundaram",
+        "percent": 85
+      },
+      {
+        "resource-file": "ATS Bold accounting resume.docx",
+        "resource-name": "Ats Bold Accounting Resume",
+        "percent": 5
+      },
+      {
+        "resource-file": "Social media marketing resume.docx",
+        "resource-name": "Mira Karlsson",
+        "percent": 5
+      },
+      {
+        "resource-file": "Color block resume.docx",
+        "resource-name": "Ian Hansson",
+        "percent": 5
+      }
+    ]
+  },
+  {
+    "job-file": "job2.txt",
+    "job-title": "Sr. Solutions Developer - Data Governance",
+    "matches": [
+      {
+        "resource-file": "Deepak Shanmugasundaram-Resume.pdf",
+        "resource-name": "Deepak Shanmugasundaram",
+        "percent": 15
+      },
+      {
+        "resource-file": "ATS Bold accounting resume.docx",
+        "resource-name": "Ats Bold Accounting Resume",
+        "percent": 5
+      },
+      {
+        "resource-file": "Social media marketing resume.docx",
+        "resource-name": "Mira Karlsson",
+        "percent": 5
+      },
+      {
+        "resource-file": "Color block resume.docx",
+        "resource-name": "Ian Hansson",
+        "percent": 5
+      }
+    ]
+  }
+]

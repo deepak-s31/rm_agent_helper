@@ -5,9 +5,10 @@ from typing import List
 import os
 import json
 from rm_agent_helper.report import generate_html_report
+from rm_agent_helper.job_report import generate_job_match_html_report
 from rm_agent_helper.utils import coerce_result_to_json_text, normalize_candidates_json
 from rm_agent_helper.enrich import load_resume_texts, enrich_candidates
-from rm_agent_helper.tools.custom_tool import ResourceResumeAnalyzerTool
+from rm_agent_helper.tools.custom_tool import ResourceResumeAnalyzerTool, JobProfileLoaderTool
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -34,6 +35,14 @@ class RmAgentHelper():
             tools=[ResourceResumeAnalyzerTool()],
         )
 
+    @agent
+    def job_matcher(self) -> Agent:
+        return Agent(
+            config=self.agents_config['job_matcher'],  # type: ignore[index]
+            verbose=True,
+            tools=[ResourceResumeAnalyzerTool(), JobProfileLoaderTool()],
+        )
+
     @task
     def analyse_resource_task(self) -> Task:
         return Task(
@@ -41,12 +50,19 @@ class RmAgentHelper():
             agent=self.resource_analyser(),  # type: ignore
         )
 
+    @task
+    def match_jobs_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['match_jobs_task'],  # type: ignore[index]
+            agent=self.job_matcher(),  # type: ignore
+        )
+
     @crew
     def crew(self) -> Crew:
         """Creates the RmAgentHelper crew"""
         return Crew(
-            agents=[self.resource_analyser()],  # Automatically created by the @agent decorator
-            tasks=[self.analyse_resource_task()],
+            agents=[self.resource_analyser(), self.job_matcher()],  # Automatically created by the @agent decorator
+            tasks=[self.analyse_resource_task(), self.match_jobs_task()],
             process=Process.sequential,
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
@@ -87,6 +103,8 @@ class RmAgentHelper():
         os.makedirs("output", exist_ok=True)
         output_json = os.path.join("output", "resource_report.json")
         output_html = os.path.join("output", "resource_report.html")
+        job_match_json = os.path.join("output", "job_match_report.json")
+        job_match_html = os.path.join("output", "job_match_report.html")
 
         json_text = coerce_result_to_json_text(result)
         json_text_stripped = (json_text or "").strip()
@@ -123,3 +141,18 @@ class RmAgentHelper():
             print(f"Saved HTML report to {output_html}")
         except Exception as e:
             print(f"Warning: failed to generate HTML report: {e}")
+
+        # If final output looks like job-match JSON, persist and render HTML
+        try:
+            text = coerce_result_to_json_text(result)
+            obj = json.loads(text)
+            if isinstance(obj, list) and obj and isinstance(obj[0], dict) and (
+                ("job-file" in obj[0] or "job_file" in obj[0]) and "matches" in obj[0]
+            ):
+                with open(job_match_json, "w", encoding="utf-8") as f:
+                    json.dump(obj, f, ensure_ascii=False, indent=2)
+                print(f"Saved job match JSON to {job_match_json}")
+                generate_job_match_html_report(job_match_json, job_match_html)
+                print(f"Saved job match HTML to {job_match_html}")
+        except Exception as e:
+            print(f"Warning: failed to persist job match report: {e}")

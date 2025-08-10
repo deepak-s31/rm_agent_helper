@@ -1,0 +1,68 @@
+As a Analyst/Consultant/Senior Consultant in our T&T Team you’ll build and nurture positive working relationships with teams and clients with the intention to exceed client expectations: -
+
+
+
+· Develop and maintain automated test scripts using Selenium WebDriver with Java.
+
+· Collaborate with QA and development teams to understand requirements and create test cases.
+
+· Execute automated tests and log defects.
+
+· Assist in maintaining test frameworks and test documentation.
+
+· Support manual testing efforts as needed.
+
+· Design and implement automated test frameworks using Selenium WebDriver and Java.
+
+· Develop and maintain comprehensive test scripts and suites.
+
+· Integrate automation tests into CI/CD pipelines.
+
+· Analyze test results, troubleshoot issues, and ensure defect resolution.
+
+· Collaborate with teams to improve test processes and automation strategies.
+
+· Lead the design and development of robust Selenium Java automation frameworks.
+
+· Drive automation strategy, governance, and continuous improvement across projects.
+
+· Mentor junior and mid-level automation engineers.
+
+· Collaborate with development, QA, and DevOps teams to integrate automation in CI/CD pipelines.
+
+· Analyze complex issues and optimize automation performance.
+
+
+
+Desired Qualifications
+
+
+
+· 1 to 9 years hands-on experience with Selenium WebDriver and Java.
+
+· Familiarity with test frameworks like TestNG or JUnit.
+
+· Basic understanding of CI/CD tools and version control (e.g., Jenkins, Git).
+
+· Strong knowledge of test frameworks like TestNG, JUnit, or Cucumber.
+
+· Experience with CI/CD tools such as Jenkins, Maven, Git.
+
+· Good problem-solving and communication skills.
+
+· Expertise in test frameworks such as TestNG, JUnit, or Cucumber.
+
+· Experience with CI/CD, Jenkins, Maven, Git, and related tools.
+
+· Strong leadership, problem-solving, and communication skills.
+
+
+
+Location and way of working:
+
+· Base location: Bangalore
+
+· Hybrid is our default way of working. Each domain has customized the hybrid approach to their unique needs.
+
+How you’ll grow
+

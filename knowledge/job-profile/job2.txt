@@ -1,0 +1,59 @@
+This role will be based in Sunnyvale, Mountain View, San Francisco CA, New York, NY or Chicago, IL.
+
+At LinkedIn, our approach to flexible work is centered on trust and optimized for culture, connection, clarity, and the evolving needs of our business. The work location of this role is hybrid, meaning it will be performed both from home and from a LinkedIn office on select days, as determined by the business needs of the team.
+
+We are looking for a Sr. Solutions Developer - Data Governance to join our Data Governance team, bringing deep technical expertise to elevate our data quality measurement capabilities and enhance our data validation process. You will work cross-functionally with engineering, data architecture, and stakeholder teams to advance our data and reporting solutions. You will leverage our data to identify key insights and create operational efficiencies, as well as produce accurate and meaningful analysis to drive business decisions.
+
+To be successful in this role you need to be highly analytical, with a strong intellectual curiosity and be comfortable responding to and structuring ambiguous requests. You must be able to prioritize multiple tasks in a fast-paced environment. Your stakeholders will not always know what is possible, so it is important that you ask effective questions to get clarity in addition to managing expectations on what you can deliver. Exceptional attention to detail, strong analytical and development skills, proactive communication skills, and an ability to meet tight deadlines will be critical for success in this role.
+
+Responsibilities:
+
+Act as a thought partner to internal teams, advising on data modeling, integration, and issue resolution across HR systems (e.g., Workday, Visier, SmartRecruiters)
+Proven AI/ ML implementation experience with emphasis on data quality and monitoring.
+Design and implement technical frameworks to measure and monitor data quality, collaborating with stakeholders to define key quality metrics.
+Partner with other engineering teams to ensure validation rules, lineage, and data controls are embedded into our pipelines and systems.
+Work with cross-functional teams to translate business requirements into technical specifications and guide end-to-end implementation.
+Serve as a technical steward of key datasets, overseeing their accuracy, completeness, timeliness, and alignment with governance standards.
+Contribute to our data governance strategy by helping define policies and best practices for data validation and metadata management.
+Support operational readiness by establishing mechanisms for deployment, monitoring, and continuous improvement of data products.Conduct complex data analysis, develop actionable insights, communicate findings to stakeholders, and utilize data visualization tools to support function strategy and decision-making.
+Proven track record of developing enterprise-level data programs heavily focused on self-service and multi-persona management.
+Influence and collaborate on enterprise-level strategy for People Analytics, and develop scalable solutions to support end users.
+Ability to develop strong partnerships within the organization.
+Stay relevant in technological trends that might be used to resolve complex business problems.
+Find new and creative ways to operationalize AI into our existing tools and processes
+Bring critical thinking & problem-solving skills to a range of challenging problems.
+
+
+Qualifications
+
+Basic Qualifications:
+
+BA/BS degree or equivalent degree in Computer Science, Information Technology, Information Systems, or a related field.
+4+ years of experience as a Sr. Data Analyst or in a similar role.
+3+ years of work experience managing stakeholders and engineering teams.
+Experience driving Data Governance programs at scale.
+Experience with data visualization tools (e.g., Power BI, Tableau, Visier etc.).
+
+
+Preferred Qualifications:
+
+Strong proficiency in SQL and ETL processes
+High proficiency in T-SQL
+Familiarity with tools including ALM Toolkit, Tabular Editor, SQL Server Management Studio (SSMS), etc.
+3+ years in multi-dimensional design
+Proven Hands on AI/ML implementation
+Experience in enterprise integration, primarily focused on HR systems (Visier, Workday, SmartRecruiters, CSOD, etc.), Visier strongly preferred.
+
+
+Suggested Skills:
+
+Adaptable
+Design and Systems Thinking
+Autonomy, Creativity, and Discretion
+
+
+LinkedIn is committed to fair and equitable compensation practices.
+
+The pay range for this role is $112,000 to $185,000. Actual compensation packages are based on several factors that are unique to each candidate, including but not limited to skill set, depth of experience, certifications, and specific work location. This may be different in other locations due to differences in the cost of labor.
+
+The total compensation package for this position may also include annual performance bonus, stock, benefits and/or other applicable incentive compensation plans. For more information, visit https://careers.linkedin.com/benefits.
