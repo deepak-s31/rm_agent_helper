@@ -1,5 +1,12 @@
 analyse_resource_task:
   description: >
-    Use the tool to load all resume texts from knowledge/resource-resume. Carefully read and extract for each resume: resource-name, resource-job-title (a realistic role, not contact info), and experties (top skills). Return only a consolidated JSON array with fields {"resource-name":"...","resource-job-title":"...","experties":["..."]}.
+    Use the tool to load ALL resumes from knowledge/resource-resume. For EACH resume, extract strictly:
+    - resource-name: full person name as appears near the header. If not found, infer from the file name by removing words like "resume"/"cv", replacing underscores/dashes with spaces, trimming, and title-casing. Never output null.
+    - resource-job-title: the most representative job title from the header/summary. If not clearly found, output an empty string "" (not null).
+    - experties: the top 5-12 core skills (technologies, tools, methodologies). Use consistent casing. If unsure, return an empty array []. Never return null.
+    - resource-file: include the original file name.
+    Output ONLY JSON with no prose. The JSON MUST be a single array where each element corresponds to one resume.
+    DO NOT produce null values. Use "" for missing strings and [] for missing lists.
   expected_output: >
-    A JSON array like [{"resource-name":"Deepak","resource-job-title":"Test Engineer","experties":["Automation","Java","Agile"]}]. Return only the JSON string.
+    A JSON array like [{"resource-name":"Deepak Shanmugasundaram","resource-job-title":"Senior Test Engineer","experties":["Automation","Java","Agile"],"resource-file":"Deepak Shanmugasundaram-Resume.pdf"}].
+    Return only the JSON string, no code fences, no additional text.

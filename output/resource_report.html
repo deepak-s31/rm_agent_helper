@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resource Report</title>
+  <style>
+    :root {
+      --cba-gold: #FFCC00;
+      --cba-black: #000000;
+      --cba-dark: #1f1f1f;
+      --cba-grey-1: #f7f7f7;
+      --cba-grey-2: #eaeaea;
+      --cba-grey-3: #8c8c8c;
+      --cba-white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--cba-dark);
+      background: var(--cba-grey-1);
+      line-height: 1.5;
+    }
+    header {
+      background: linear-gradient(90deg, var(--cba-gold), #ffd84d);
+      color: var(--cba-black);
+      padding: 24px 16px;
+      border-bottom: 4px solid var(--cba-black);
+    }
+    header .title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    header .count {
+      margin-top: 4px;
+      color: var(--cba-black);
+      opacity: 0.85;
+      font-weight: 600;
+    }
+    main {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px 48px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--cba-white);
+      border: 1px solid var(--cba-grey-2);
+      border-radius: 10px;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+      padding: 16px;
+    }
+    .card-header {
+      border-left: 6px solid var(--cba-gold);
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+    .name {
+      margin: 0 0 2px 0;
+      font-size: 18px;
+      color: var(--cba-black);
+    }
+    .title {
+      font-size: 14px;
+      color: var(--cba-dark);
+      opacity: 0.9;
+    }
+    .meta {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--cba-grey-3);
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .badge {
+      background: var(--cba-grey-1);
+      border: 1px solid var(--cba-grey-2);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: var(--cba-dark);
+    }
+    footer {
+      text-align: center;
+      color: var(--cba-grey-3);
+      font-size: 12px;
+      padding: 24px 16px;
+    }
+    .empty {
+      margin-top: 24px;
+      color: var(--cba-grey-3);
+      font-style: italic;
+    }
+  </style>
+  <meta name="theme-color" content="#FFCC00" />
+</head>
+<body>
+  <header>
+    <div class="title">Resource Report</div>
+    <div class="count">6 candidates</div>
+  </header>
+  <main>
+    
+    <section class="grid">
+      
+    <article class="card">
+      <div class="card-header">
+        <h3 class="name">Deepak Shanmugasundaram</h3>
+        <div class="title">Senior Quality Engineer</div>
+        <div class="meta"><span class="file" title="Deepak Shanmugasundaram-Resume.pdf">Deepak Shanmugasundaram-Resume.pdf</span></div>
+      </div>
+      <div class="skills"><span class="badge" title="Java">Java</span>
+<span class="badge" title="Kotlin">Kotlin</span>
+<span class="badge" title="C#">C#</span>
+<span class="badge" title="TestNG">TestNG</span>
+<span class="badge" title="Cucumber">Cucumber</span>
+<span class="badge" title="Specflow">Specflow</span>
+<span class="badge" title="Springboot">Springboot</span>
+<span class="badge" title="AWS">AWS</span>
+<span class="badge" title="Postman">Postman</span>
+<span class="badge" title="Docker Desktop">Docker Desktop</span>
+<span class="badge" title="QTP">QTP</span>
+<span class="badge" title="UFT">UFT</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-header">
+        <h3 class="name">Simple Resume</h3>
+        <div class="title"></div>
+        <div class="meta"><span class="file" title="Simple resume  (1).docx">Simple resume  (1).docx</span></div>
+      </div>
+      <div class="skills"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-header">
+        <h3 class="name">Ats Bold Accounting Resume</h3>
+        <div class="title"></div>
+        <div class="meta"><span class="file" title="ATS Bold accounting resume.docx">ATS Bold accounting resume.docx</span></div>
+      </div>
+      <div class="skills"></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-header">
+        <h3 class="name">Mira Karlsson</h3>
+        <div class="title">Social Media Marketing Specialist</div>
+        <div class="meta"><span class="file" title="Social media marketing resume.docx">Social media marketing resume.docx</span></div>
+      </div>
+      <div class="skills"><span class="badge" title="Platform expertise">Platform expertise</span>
+<span class="badge" title="Content creation">Content creation</span>
+<span class="badge" title="Analytics">Analytics</span>
+<span class="badge" title="Communication">Communication</span>
+<span class="badge" title="Creativity">Creativity</span>
+<span class="badge" title="Strategic thinking">Strategic thinking</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-header">
+        <h3 class="name">Ian Hansson</h3>
+        <div class="title">Graphic Designer</div>
+        <div class="meta"><span class="file" title="Color block resume.docx">Color block resume.docx</span></div>
+      </div>
+      <div class="skills"><span class="badge" title="Design software">Design software</span>
+<span class="badge" title="Typography">Typography</span>
+<span class="badge" title="UI/UX design">UI/UX design</span>
+<span class="badge" title="Print design">Print design</span>
+<span class="badge" title="Project management">Project management</span>
+<span class="badge" title="Creative problem solving">Creative problem solving</span>
+<span class="badge" title="Communication skills">Communication skills</span></div>
+    </article>
+    
+
+    <article class="card">
+      <div class="card-header">
+        <h3 class="name">Simple Resume</h3>
+        <div class="title"></div>
+        <div class="meta"><span class="file" title="Simple resume .docx">Simple resume .docx</span></div>
+      </div>
+      <div class="skills"></div>
+    </article>
+    
+    </section>
+  </main>
+  <footer>Generated by rm_agent_helper</footer>
+  </body>
+</html>

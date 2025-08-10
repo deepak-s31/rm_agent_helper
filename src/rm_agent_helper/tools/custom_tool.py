@@ -25,10 +25,70 @@ def _extract_text_from_pdf(pdf_path: str) -> str:
         return ""
 
 
+def _extract_text_from_docx(docx_path: str) -> str:
+    # 1) Try python-docx
+    try:
+        import docx  # python-docx
+        try:
+            document = docx.Document(docx_path)
+            parts: List[str] = []
+            for p in document.paragraphs:
+                text = (p.text or "").strip()
+                if text:
+                    parts.append(text)
+            for table in getattr(document, "tables", []) or []:
+                for row in table.rows:
+                    for cell in row.cells:
+                        cell_text = (cell.text or "").strip()
+                        if cell_text:
+                            parts.append(cell_text)
+            content = "\n".join(parts).strip()
+            if content:
+                return content
+        except Exception:
+            pass
+    except Exception:
+        pass
+
+    # 2) Fallback to docx2txt
+    try:
+        import docx2txt
+        try:
+            content = (docx2txt.process(docx_path) or "").strip()
+            if content:
+                return content
+        except Exception:
+            pass
+    except Exception:
+        pass
+
+    # 3) Fallback to mammoth (HTML → text)
+    try:
+        import mammoth
+        try:
+            with open(docx_path, "rb") as f:
+                result = mammoth.convert_to_html(f)
+                html = (result.value or "").strip()
+                if html:
+                    # Strip tags very simply
+                    import re
+                    text = re.sub(r"<[^>]+>", "\n", html)
+                    text = re.sub(r"\n+", "\n", text)
+                    text = text.strip()
+                    if text:
+                        return text
+        except Exception:
+            pass
+    except Exception:
+        pass
+
+    return ""
+
+
 class ResourceResumeAnalyzerTool(BaseTool):
     name: str = "Resource Resume Analyzer"
     description: str = (
-        "Loads .txt/.md/.pdf resumes from knowledge/resource-resume and returns a JSON array of objects "
+        "Loads .txt/.md/.pdf/.docx resumes from knowledge/resource-resume and returns a JSON array of objects "
         "with fields: resource-file, text. The agent should extract details and format the final JSON."
     )
 
@@ -43,7 +103,12 @@ class ResourceResumeAnalyzerTool(BaseTool):
             if not os.path.isfile(path):
                 continue
             lower = f.lower()
-            if lower.endswith(".txt") or lower.endswith(".pdf") or lower.endswith(".md"):
+            if (
+                lower.endswith(".txt")
+                or lower.endswith(".pdf")
+                or lower.endswith(".md")
+                or lower.endswith(".docx")
+            ):
                 resource_files.append(f)
 
         loaded_resumes: List[dict] = []
@@ -52,8 +117,11 @@ class ResourceResumeAnalyzerTool(BaseTool):
             resource_path = os.path.join(resource_resume_dir, resource_file)
             resource_content = ""
             try:
-                if resource_file.lower().endswith(".pdf"):
+                lower_name = resource_file.lower()
+                if lower_name.endswith(".pdf"):
                     resource_content = _extract_text_from_pdf(resource_path)
+                elif lower_name.endswith(".docx"):
+                    resource_content = _extract_text_from_docx(resource_path)
                 else:
                     with open(resource_path, "r", encoding="utf-8", errors="ignore") as f:
                         resource_content = f.read()
