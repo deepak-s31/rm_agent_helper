@@ -5,7 +5,13 @@ description = "rm_agent_helper using crewAI"
 authors = [{ name = "Your Name", email = "you@example.com" }]
 requires-python = ">=3.10,<3.13"
 dependencies = [
-    "crewai[tools]>=0.121.1,<1.0.0"
+    "crewai[tools]>=0.121.1,<1.0.0",
+    "pypdf>=5.0.0,<6.0.0",
+    "python-docx>=1.1.0,<1.2.0",
+    "docx2txt>=0.8",
+    "mammoth>=1.8.0",
+    "fastapi>=0.111.0,<1.0.0",
+    "uvicorn>=0.30.0,<1.0.0",
     ]
 
 [project.scripts]
