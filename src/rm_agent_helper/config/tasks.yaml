@@ -10,3 +10,25 @@ analyse_resource_task:
   expected_output: >
     A JSON array like [{"resource-name":"Deepak Shanmugasundaram","resource-job-title":"Senior Test Engineer","experties":["Automation","Java","Agile"],"resource-file":"Deepak Shanmugasundaram-Resume.pdf"}].
     Return only the JSON string, no code fences, no additional text.
+
+match_jobs_task:
+  description: >
+    1) Use Job Profile Loader tool to load ALL job descriptions from knowledge/job-profile as JSON with fields: job-file, text.
+    2) Use Resource Resume Analyzer tool to load ALL resumes from knowledge/resource-resume as JSON with fields: resource-file, text.
+    3) For EACH job, evaluate how well EACH resume matches that job based on the job's responsibilities and qualifications. Consider skills, tools, domains, experience level, and role fit.
+    4) Output ONLY JSON with the following exact schema:
+       [
+         {
+           "job-file": "job1.txt",
+           "job-title": "A short title derived from the first non-empty line or the file name",
+           "matches": [
+             { "resource-file": "ResumeA.pdf", "resource-name": "Full Name", "percent": 0-100 }
+           ]
+         }
+       ]
+    - The output MUST be a single JSON array where each element corresponds to one job profile.
+    - The matches array MUST include an entry for every loaded resume, sorted by percent descending.
+    - Use conservative, defensible percentages. If uncertain, err low. Never guess wildly.
+    - Do NOT include any explanations or prose, only pure JSON. No code fences.
+  expected_output: >
+    A JSON array like [{"job-file":"job1.txt","job-title":"Analyst/Consultant/Senior Consultant in T&T Team","matches":[{"resource-file":"ResumeA.pdf","resource-name":"Jane Doe","percent":65}]}]

@@ -136,3 +136,38 @@ class ResourceResumeAnalyzerTool(BaseTool):
             })
 
         return json.dumps(loaded_resumes, indent=2)
+
+
+class JobProfileLoaderTool(BaseTool):
+    name: str = "Job Profile Loader"
+    description: str = (
+        "Loads .txt/.md job profiles from knowledge/job-profile and returns a JSON array "
+        "of objects with fields: job-file, text."
+    )
+
+    def _run(self) -> str:
+        job_profile_dir = os.path.join("knowledge", "job-profile")
+        if not os.path.isdir(job_profile_dir):
+            return json.dumps([], indent=2)
+
+        job_files: List[str] = []
+        for f in os.listdir(job_profile_dir):
+            path = os.path.join(job_profile_dir, f)
+            if not os.path.isfile(path):
+                continue
+            lower = f.lower()
+            if lower.endswith(".txt") or lower.endswith(".md"):
+                job_files.append(f)
+
+        loaded_jobs: List[dict] = []
+        for job_file in job_files:
+            job_path = os.path.join(job_profile_dir, job_file)
+            content = ""
+            try:
+                with open(job_path, "r", encoding="utf-8", errors="ignore") as f:
+                    content = f.read()
+            except Exception:
+                content = ""
+            loaded_jobs.append({"job-file": job_file, "text": (content or "").strip()})
+
+        return json.dumps(loaded_jobs, indent=2)

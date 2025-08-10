@@ -4,6 +4,7 @@ import sys
 import json
 import warnings
 from rm_agent_helper.report import generate_html_report
+from rm_agent_helper.job_report import generate_job_match_html_report
 from datetime import datetime
 
 from rm_agent_helper.crew import RmAgentHelper
@@ -22,6 +23,8 @@ def run():
     os.makedirs("output", exist_ok=True)
     output_json = os.path.join("output", "resource_report.json")
     output_html = os.path.join("output", "resource_report.html")
+    job_match_json = os.path.join("output", "job_match_report.json")
+    job_match_html = os.path.join("output", "job_match_report.html")
 
     try:
         result = RmAgentHelper().crew().kickoff(inputs={})
@@ -63,6 +66,20 @@ def run():
         print(f"Saved HTML report to {output_html}")
     except Exception as e:
         print(f"Warning: failed to generate HTML report: {e}")
+
+    # If the final crew result is a job-match array, persist it and render HTML
+    try:
+        obj = json.loads(json_text)
+        if isinstance(obj, list) and obj and isinstance(obj[0], dict) and (
+            ("job-file" in obj[0] or "job_file" in obj[0]) and "matches" in obj[0]
+        ):
+            with open(job_match_json, "w", encoding="utf-8") as f:
+                json.dump(obj, f, ensure_ascii=False, indent=2)
+            print(f"Saved job match JSON to {job_match_json}")
+            generate_job_match_html_report(job_match_json, job_match_html)
+            print(f"Saved job match HTML to {job_match_html}")
+    except Exception as e:
+        print(f"Warning: failed to persist job match report: {e}")
 
 
 def train():
