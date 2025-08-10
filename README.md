@@ -1,54 +1,83 @@
-# RmAgentHelper Crew
+## rm_agent_helper
 
-Welcome to the RmAgentHelper Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+Resume analysis assistant built with CrewAI. It scans resumes under `knowledge/resource-resume/`, runs an agentic extraction, and produces:
 
-## Installation
+- **Consolidated JSON**: `output/resource_report.json`
+- **HTML report (CBA-inspired palette)**: `output/resource_report.html`
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+### Prerequisites
 
-First, if you haven't already, install uv:
+- Python 3.10–3.12
+- macOS/Linux/Windows
 
-```bash
-pip install uv
-```
-
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/rm_agent_helper/config/agents.yaml` to define your agents
-- Modify `src/rm_agent_helper/config/tasks.yaml` to define your tasks
-- Modify `src/rm_agent_helper/crew.py` to add your own logic, tools and specific args
-- Modify `src/rm_agent_helper/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+### Installation
 
 ```bash
-$ crewai run
+# from the project root
+uv sync  # or: pip install -e .
 ```
 
-This command initializes the rm_agent_helper Crew, assembling the agents and assigning them tasks as defined in your configuration.
+If you do not use `uv`, install via pip:
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+```bash
+pip install -e .
+```
 
-## Understanding Your Crew
+This installs the console script `rm_agent_helper`.
 
-The rm_agent_helper Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+### Prepare input resumes
 
-## Support
+Place resumes in `knowledge/resource-resume/` as `.pdf`, `.txt`, or `.md` files. Example already included.
 
-For support, questions, or feedback regarding the RmAgentHelper Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+### Run
 
-Let's create wonders together with the power and simplicity of crewAI.
+```bash
+crewai run
+```
+
+This will:
+
+- Run the crew and write the consolidated JSON to `output/resource_report.json`
+- Generate an HTML report at `output/resource_report.html`
+
+Example output structure:
+
+```json
+[
+  {
+    "resource-name": "Jane Doe",
+    "resource-job-title": "Senior Data Scientist",
+    "experties": ["Python", "ML", "NLP"],
+    "resource-file": "Jane_Doe_Resume.pdf"
+  }
+]
+```
+
+If the agent fails to run, the app still creates an empty JSON array and an HTML shell so you can verify the pipeline.
+
+### Configuration
+
+- Agents: `src/rm_agent_helper/config/agents.yaml`
+- Tasks: `src/rm_agent_helper/config/tasks.yaml`
+
+Edit these to adjust prompts, fields, and behavior.
+
+### Development
+
+Run locally without install:
+
+```bash
+uv run python -m rm_agent_helper.main
+# or
+python -m rm_agent_helper.main
+```
+
+### Troubleshooting
+
+- No output / empty report: ensure resumes are present in `knowledge/resource-resume/` and are readable. PDFs are parsed with `pypdf`.
+- If PDFs have no extractable text (scans), convert them to searchable PDFs or provide `.txt` versions.
+
+### License
+
+MIT
+

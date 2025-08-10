@@ -1,17 +1,12 @@
-research_task:
+analyse_resource_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Use the tool to load ALL resumes from knowledge/resource-resume. For EACH resume, extract strictly:
+    - resource-name: full person name as appears near the header. If not found, infer from the file name by removing words like "resume"/"cv", replacing underscores/dashes with spaces, trimming, and title-casing. Never output null.
+    - resource-job-title: the most representative job title from the header/summary. If not clearly found, output an empty string "" (not null).
+    - experties: the top 5-12 core skills (technologies, tools, methodologies). Use consistent casing. If unsure, return an empty array []. Never return null.
+    - resource-file: include the original file name.
+    Output ONLY JSON with no prose. The JSON MUST be a single array where each element corresponds to one resume.
+    DO NOT produce null values. Use "" for missing strings and [] for missing lists.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
-
-reporting_task:
-  description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
-  expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A JSON array like [{"resource-name":"Deepak Shanmugasundaram","resource-job-title":"Senior Test Engineer","experties":["Automation","Java","Agile"],"resource-file":"Deepak Shanmugasundaram-Resume.pdf"}].
+    Return only the JSON string, no code fences, no additional text.
