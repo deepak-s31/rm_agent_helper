@@ -55,6 +55,43 @@ Example output structure:
 
 If the agent fails to run, the app still creates an empty JSON array and an HTML shell so you can verify the pipeline.
 
+### FastAPI API
+
+Run the API server to trigger the crew over HTTP.
+
+```bash
+uv run uvicorn api.app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+- **Health check**
+  - `GET /healthz`
+  - Example:
+    ```bash
+    curl http://127.0.0.1:8000/healthz
+    ```
+
+- **Kickoff crew (runs in background)**
+  - `POST /crew/kickoff`
+  - Returns immediately with paths to outputs.
+  - Example:
+    ```bash
+    curl -X POST http://127.0.0.1:8000/crew/kickoff
+    ```
+
+API outputs are written to:
+- `output/resource_report.json`
+- `output/resource_report.html`
+
+API folder structure:
+
+```
+api/
+  app/
+    main.py            # FastAPI app and health endpoint
+    routers/
+      crew.py          # POST /crew/kickoff endpoint
+```
+
 ### Configuration
 
 - Agents: `src/rm_agent_helper/config/agents.yaml`
