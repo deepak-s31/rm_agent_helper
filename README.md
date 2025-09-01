@@ -1,6 +1,6 @@
 # RM Agent Helper
 
-An intelligent resume analysis and job matching assistant built with CrewAI. This tool analyzes resumes and matches them against job profiles using AI agents to provide comprehensive insights.
+An intelligent resume analysis and job matching assistant built with CrewAI. This tool analyzes resumes and matches them against job profiles using AI agents to provide comprehensive insights
 
 ## Features
 
